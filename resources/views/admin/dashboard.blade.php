@@ -42,7 +42,7 @@ https://templatemo.com/tm-608-daynight-admin
             </button>
         </div>
         <nav class="mobile-menu-nav">
-            <a href="index.html" class="active">
+            <a href="{{ url('/') }}" class="active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="3" width="7" height="7" rx="1"/>
                     <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -51,20 +51,20 @@ https://templatemo.com/tm-608-daynight-admin
                 </svg>
                 Dashboard
             </a>
-            <a href="projects.html">
+            <a href="{{ url('/films') }}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
                 </svg>
                 Film
             </a>
-            <a href="inbox.html">
+            <a href="{{ url('/jadwal_films') }}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                 </svg>
                 Jadwal Film
             </a>
-            <a href="analytics.html">
+            <a href="{{ url('/antrians')}}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="20" x2="18" y2="10"/>
                     <line x1="12" y1="20" x2="12" y2="4"/>
@@ -72,7 +72,7 @@ https://templatemo.com/tm-608-daynight-admin
                 </svg>
                 Antrian
             </a>
-            <a href="settings.html">
+            <a href="{{ url('users') }}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="3"/>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -81,7 +81,7 @@ https://templatemo.com/tm-608-daynight-admin
             </a>
         </nav>
         <div class="mobile-menu-footer">
-            <a href="login.html" class="mobile-logout-btn">
+            <a href="{{ url('/logout')}}" class="mobile-logout-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
                     <polyline points="16 17 21 12 16 7"/>
@@ -127,7 +127,7 @@ https://templatemo.com/tm-608-daynight-admin
                     </a>
                     <div class="nav-menu">
                         <div class="nav-item">
-                            <a href="index.html" class="nav-link active">
+                            <a href="{{ url('/') }}" class="nav-link active">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="3" y="3" width="7" height="7" rx="1"/>
                                     <rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -138,39 +138,39 @@ https://templatemo.com/tm-608-daynight-admin
                             </a>
                         </div>
                         <div class="nav-item">
-                            <a href="projects.html" class="nav-link">
+                            <a href="{{ url('/films') }}" class="nav-link">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
                                 </svg>
-                                Projects
+                                Films
                             </a>
                         </div>
                         <div class="nav-item">
-                            <a href="inbox.html" class="nav-link">
+                            <a href="{{ url('/jadwal_films') }}" class="nav-link">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                     <polyline points="22,6 12,13 2,6"/>
                                 </svg>
-                                Inbox
+                                Jadwal Films
                             </a>
                         </div>
                         <div class="nav-item">
-                            <a href="analytics.html" class="nav-link">
+                            <a href="{{ url('/antrians') }}" class="nav-link">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <line x1="18" y1="20" x2="18" y2="10"/>
                                     <line x1="12" y1="20" x2="12" y2="4"/>
                                     <line x1="6" y1="20" x2="6" y2="14"/>
                                 </svg>
-                                Analytics
+                                Antrian
                             </a>
                         </div>
                         <div class="nav-item">
-                            <a href="settings.html" class="nav-link">
+                            <a href="{{ url('/users') }}" class="nav-link">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="3"/>
                                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                                 </svg>
-                                Settings
+                                Users
                             </a>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ https://templatemo.com/tm-608-daynight-admin
                     </div>
                     <button class="user-menu">
                         <div class="user-avatar">A</div>
-                        <span class="user-name">Alex</span>
+                        <span class="user-name">Admin</span>
                     </button>
                     <a href="login.html" class="btn-logout" title="Logout">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -229,7 +229,7 @@ https://templatemo.com/tm-608-daynight-admin
             <!-- Stats Grid -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-label">Total Films</div>
                     <div class="stat-value">$48,250</div>
                     <div class="stat-change positive">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -240,7 +240,7 @@ https://templatemo.com/tm-608-daynight-admin
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Active Users</div>
+                    <div class="stat-label">Total Users</div>
                     <div class="stat-value">2,420</div>
                     <div class="stat-change positive">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -251,7 +251,7 @@ https://templatemo.com/tm-608-daynight-admin
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-label">Jadwal Film for Today</div>
                     <div class="stat-value">1,840</div>
                     <div class="stat-change negative">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -262,7 +262,7 @@ https://templatemo.com/tm-608-daynight-admin
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Conversion Rate</div>
+                    <div class="stat-label">Antrian for Today</div>
                     <div class="stat-value">3.24%</div>
                     <div class="stat-change positive">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

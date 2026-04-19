@@ -15,7 +15,8 @@ class Film extends Model
         'judul',
         'genre',
         'durasi',
-        'deskripsi'
+        'deskripsi',
+        'poster'
     ];
 
     // RELASI 🔥
