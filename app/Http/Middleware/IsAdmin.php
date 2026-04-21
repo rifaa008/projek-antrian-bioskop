@@ -4,11 +4,20 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IsAdmin
 {
     public function handle(Request $request, Closure $next)
-{
-    return $next($request); 
-}
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->email != 'admin@gmail.com') {
+            return redirect('/login');
+        }
+
+        return $next($request);
+    }
 }
