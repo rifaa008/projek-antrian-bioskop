@@ -6,18 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Antrian extends Model
 {
-     protected $fillable = [
-        'user_id',
+    protected $fillable = [
+        'nama',
         'jadwal_film_id',
         'nomor_antrian',
         'status'
-     ];
+    ];
 
-     public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    // relasi ke jadwal film
     public function jadwalFilm()
     {
         return $this->belongsTo(JadwalFilm::class);

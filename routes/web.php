@@ -31,3 +31,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('antrians', AntrianController::class);
 
 });
+
+use App\Http\Controllers\UserPageController;
+
+Route::get('/user/films', [UserPageController::class, 'films']);
+Route::get('/user/jadwal', [UserPageController::class, 'jadwal']);
+Route::get('/user/antrian', [UserPageController::class, 'antrian']);
+
+Route::post('/ambil-antrian', [UserPageController::class, 'ambilAntrian']);
+Route::get('/user', [UserPageController::class, 'home']);
+Route::get('/user/ambil', [UserPageController::class, 'formAntrian']);
+Route::post('/ambil-antrian', [UserPageController::class, 'ambilAntrian']);

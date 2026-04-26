@@ -3,64 +3,81 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Antrian;
+use App\Models\JadwalFilm;
 
-class UserController extends Controller
+class AntrianController extends Controller
 {
     
     public function index()
     {
-        return response()->json(User::all());
+        $antrians = Antrian::with('JadwalFilm')->get();
+        return view('antrians.index', compact('antrians'));
+    }
+
+    
+    public function create()
+    {
+        return redirect()->back();
     }
 
     
     public function store(Request $request)
     {
-        $user = User::create([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => $request->password, 
-            'role' => $request->role ?? 'user'
+        $request->validate([
+            'nama' => 'required',
+            'jadwal_film_id' => 'required'
         ]);
 
-        return response()->json($user);
+        
+        $last = Antrian::where('jadwal_film_id', $request->jadwal_film_id)
+                        ->orderBy('nomor_antrian', 'desc')
+                        ->first();
+
+        $nomor = $last ? $last->nomor_antrian + 1 : 1;
+
+        Antrian::create([
+            'nama' => $request->nama,
+            'jadwal_film_id' => $request->jadwal_film_id,
+            'nomor_antrian' => $nomor,
+            'status' => 'menunggu'
+        ]);
+
+        return redirect()->back();
+    }
+
+
+    public function show($id)
+    {
+        //
     }
 
     
-    public function login(Request $request)
+    public function edit($id)
     {
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Login gagal'], 401);
-        }
-
-        return response()->json([
-            'message' => 'Login berhasil',
-            'user' => $user
-        ]);
-    }
-
-   
-    public function show($id)
-    {
-        return response()->json(User::findOrFail($id));
+        $antrian = Antrian::findOrFail($id);
+        return view('antrians.edit', compact('antrian'));
     }
 
     
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $request->validate([
+            'status' => 'required'
+        ]);
 
-        return response()->json($user);
+        $antrian = Antrian::findOrFail($id);
+        $antrian->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('antrians.index');
     }
 
-   
+    
     public function destroy($id)
     {
-        User::destroy($id);
-        return response()->json(['message' => 'User dihapus']);
+        Antrian::destroy($id);
+        return redirect()->back();
     }
 }
