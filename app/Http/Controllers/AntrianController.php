@@ -4,29 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Antrian;
-use App\Models\JadwalFilm;
-use App\Models\User;
 
 class AntrianController extends Controller
 {
-    
-
     public function index()
-    {   
-    $antrians = Antrian::with(['user','jadwalFilm.film'])->get();
-    return view('antrians.index', compact('antrians'));
+    {
+        $antrians = Antrian::with('jadwalFilm.film')->get();
+        return view('antrians.index', compact('antrians'));
     }
 
-    
-    public function show($id)
+    public function edit($id)
     {
-        $data = Antrian::with(['user', 'jadwalFilm'])->findOrFail($id);
-        return response()->json($data);
+        $antrian = Antrian::with('jadwalFilm.film')->findOrFail($id);
+        return view('antrians.edit', compact('antrian'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $antrian = Antrian::findOrFail($id);
+
+        $antrian->update([
+            'status' => $request->status
+        ]);
+
+        return redirect('/antrians');
     }
 
     public function destroy($id)
     {
         Antrian::destroy($id);
-        return response()->json(['message' => 'Antrian dihapus']);
+        return back();
     }
 }

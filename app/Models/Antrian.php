@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Antrian extends Model
 {
+    protected $table = 'antrians';
+
     protected $fillable = [
         'nama',
         'jadwal_film_id',
@@ -13,9 +15,8 @@ class Antrian extends Model
         'status'
     ];
 
-    // relasi ke jadwal film
     public function jadwalFilm()
     {
-        return $this->belongsTo(JadwalFilm::class);
+        return $this->belongsTo(JadwalFilm::class, 'jadwal_film_id');
     }
 }

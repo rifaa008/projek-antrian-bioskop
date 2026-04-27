@@ -6,7 +6,7 @@
 
         <h2>Edit Status Antrian</h2>
 
-        <p><b>User:</b> {{ $antrian->user->name }}</p>
+        <p><b>Nama:</b> {{ $antrian->nama }}</p>
         <p><b>Film:</b> {{ $antrian->jadwalFilm->film->judul }}</p>
         <p><b>Nomor:</b> {{ $antrian->nomor_antrian }}</p>
 

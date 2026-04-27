@@ -42,3 +42,7 @@ Route::post('/ambil-antrian', [UserPageController::class, 'ambilAntrian']);
 Route::get('/user', [UserPageController::class, 'home']);
 Route::get('/user/ambil', [UserPageController::class, 'formAntrian']);
 Route::post('/ambil-antrian', [UserPageController::class, 'ambilAntrian']);
+
+use App\Http\Controllers\AdminController;
+
+Route::get('/admin', [AdminController::class, 'dashboard']);

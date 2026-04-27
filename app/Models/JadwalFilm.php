@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Film;
-use App\Models\Antrian;
 
 class JadwalFilm extends Model
 {
     use HasFactory;
 
-    protected $table = 'jadwal_films'; 
+    protected $table = 'jadwal_films';
 
     protected $fillable = [
         'film_id',
@@ -20,15 +18,13 @@ class JadwalFilm extends Model
         'studio'
     ];
 
-   
     public function film()
     {
-        return $this->belongsTo(Film::class);
+        return $this->belongsTo(Film::class, 'film_id');
     }
 
-   
     public function antrians()
     {
-        return $this->hasMany(Antrian::class);
+        return $this->hasMany(Antrian::class, 'jadwal_film_id');
     }
 }
