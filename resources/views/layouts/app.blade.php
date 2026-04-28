@@ -39,7 +39,6 @@
             font-weight: bold;
         }
 
-        /* FIX SVG BIAR GA GEDE */
         svg {
             width: 18px;
             height: 18px;
@@ -81,10 +80,53 @@
             font-weight: bold;
         }
 
+        
         .container {
             max-width: 1100px;
-            margin: auto;
+            margin: 30px auto;
             padding: 20px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        
+        .card,
+        .form-card,
+        .edit-card,
+        div[style*="background:#fff"],
+        div[style*="background: #fff"] {
+            background: #1e1e1e !important;
+            color: white !important;
+            border-radius: 12px;
+        }
+
+        
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #2a2a2a !important;
+            color: white !important;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: orange !important;
+        }
+
+        
+        button {
+            cursor: pointer;
+        }
+
+        
+        * {
+            box-sizing: border-box;
         }
     </style>
 </head>

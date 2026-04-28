@@ -10,13 +10,13 @@
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.6); /* biar terang, bukan gelap */
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: black; /* <- ini biar tulisan hitam */
 }
 
 .box h1 {
@@ -25,7 +25,7 @@
 }
 
 .box p {
-    color: #ddd;
+    color: black; /* pastikan juga hitam */
 }
 
 .btn {
@@ -48,7 +48,11 @@
     <div class="overlay">
         <div class="box">
             <h1>🎬 Selamat Datang</h1>
-            <p>Ambil nomor antrian film favoritmu dengan mudah</p>
+            <p>
+                Mau nonton bioskop tapi males ngantri panjang lebar??<br>
+                Tenang aja! Sekarang kamu bisa ambil langsung Antriannya secara online di website ini<br>
+                Yukk segera pilih film apa yang mau kamu tonton dan atur jadwalnya sendiri!!!
+            </p>
 
             <a href="/user/ambil" class="btn">Ambil Antrian 🎟</a>
         </div>

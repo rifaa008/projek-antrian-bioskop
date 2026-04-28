@@ -11,15 +11,21 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        // Total data
+        
         $totalFilms = Film::count();
         $totalJadwal = JadwalFilm::count();
         $totalAntrian = Antrian::count();
 
-        // Status antrian
+        
         $menunggu = Antrian::where('status', 'menunggu')->count();
         $dipanggil = Antrian::where('status', 'dipanggil')->count();
         $selesai = Antrian::where('status', 'selesai')->count();
+
+        
+        $latestAntrians = Antrian::with('jadwalFilm.film')
+            ->latest() 
+            ->take(5)  
+            ->get();
 
         return view('admin.dashboard', compact(
             'totalFilms',
@@ -27,7 +33,8 @@ class AdminController extends Controller
             'totalAntrian',
             'menunggu',
             'dipanggil',
-            'selesai'
+            'selesai',
+            'latestAntrians' 
         ));
     }
 }

@@ -9,13 +9,23 @@ class AntrianController extends Controller
 {
     public function index()
     {
-        $antrians = Antrian::with('jadwalFilm.film')->get();
+        $antrians = Antrian::with('jadwalFilm.film')
+            ->get()
+            ->sortBy(function ($a) {
+                return $a->jadwalFilm->studio ?? 0;
+            })
+            ->groupBy(function ($a) {
+                return $a->jadwalFilm->studio ?? 'Unknown';
+            });
+
         return view('antrians.index', compact('antrians'));
     }
 
     public function edit($id)
     {
-        $antrian = Antrian::with('jadwalFilm.film')->findOrFail($id);
+        $antrian = Antrian::with('jadwalFilm.film')
+            ->findOrFail($id);
+
         return view('antrians.edit', compact('antrian'));
     }
 
@@ -27,12 +37,13 @@ class AntrianController extends Controller
             'status' => $request->status
         ]);
 
-        return redirect('/antrians');
+        return redirect()->route('antrians.index');
     }
 
     public function destroy($id)
     {
         Antrian::destroy($id);
-        return back();
+
+        return redirect()->route('antrians.index');
     }
 }

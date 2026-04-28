@@ -61,7 +61,7 @@
     <a href="/user">🏠 Home</a>
     <a href="/user/films">🎬 Films</a>
     <a href="/user/jadwal">🗓️ Jadwal Films</a>
-    <a href="/user/antrian">🎟️ Antrian Saya</a>
+    <a href="/user/antrian">🎟️ Antrian</a>
 </div>
 
 <div class="container">

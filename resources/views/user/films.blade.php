@@ -1,22 +1,58 @@
 @extends('user.layout')
 
 @section('content')
-<h2>Daftar Film</h2>
 
-@foreach($films as $film)
-<div class="card film-box">
+<h2 style="text-align:center;">Daftar Film</h2>
 
-    {{-- POSTER --}}
-    <img src="{{ asset('storage/' . $film->poster) }}" alt="poster">
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-    <div>
-        <h3>{{ $film->judul }}</h3>
-        <p>Genre: {{ $film->genre }}</p>
-        <p>Durasi: {{ $film->durasi }} menit</p>
-        <p>{{ $film->deskripsi }}</p>
-    </div>
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: top;
+}
 
-</div>
-@endforeach
+th {
+    background-color: #333;
+    color: white;
+}
+
+img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Judul</th>
+            <th>Genre</th>
+            <th>Durasi</th>
+            <th>Deskripsi</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach($films as $film)
+        <tr>
+            <td>
+                <img src="{{ asset('storage/' . $film->poster) }}" alt="poster">
+            </td>
+            <td>{{ $film->judul }}</td>
+            <td>{{ $film->genre }}</td>
+            <td>{{ $film->durasi }} menit</td>
+            <td>{{ $film->deskripsi }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 @endsection

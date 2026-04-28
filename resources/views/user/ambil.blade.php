@@ -37,7 +37,7 @@ button:hover {
 </style>
 
 <div class="form-box">
-    <h2>📝 Isi Data Dulu</h2>
+    <h2>📝 Isi Data </h2>
 
     <form method="POST" action="/ambil-antrian">
         @csrf

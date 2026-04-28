@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>DayNight Admin</title>
     <script>
         // Prevent flash of white in dark mode - runs before CSS/page render
@@ -11,6 +12,7 @@
         }
     </script>
     <link rel="stylesheet" href="{{ asset('templatemo-daynight-style.css') }}">
+    
     <!--
 
 TemplateMo 608 DayNight Admin
@@ -19,6 +21,23 @@ https://templatemo.com/tm-608-daynight-admin
 
 -->
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const el = document.getElementById("greeting");
+
+    if (!el) return;
+
+    function setGreeting() {
+        el.innerText = "Hello, Admin";
+    }
+
+    setGreeting();
+
+    // ulang sedikit biar ngalahin script lain
+    setTimeout(setGreeting, 50);
+    setTimeout(setGreeting, 200);
+});
+</script>
 <body>
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay"></div>
@@ -26,7 +45,7 @@ https://templatemo.com/tm-608-daynight-admin
     <!-- Mobile Menu -->
     <div class="mobile-menu">
         <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
+            <a href="{{ url('/admin') }}" class="logo">
                 <div class="logo-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -74,14 +93,17 @@ https://templatemo.com/tm-608-daynight-admin
             </a>
         </nav>
         <div class="mobile-menu-footer">
-            <a href="{{ url('/logout')}}" class="mobile-logout-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
-                Logout
-            </a>
+<form action="{{ route('logout') }}"  class="btn-logout">
+    @csrf
+    <button type="submit" class="mobile-logout-btn" style="background:none; border:none; cursor:pointer;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Logout
+    </button>
+</form>
             <div class="theme-toggle">
                 <button class="theme-btn theme-btn-snow active" onclick="setTheme('snow')" title="Snow Edition">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -184,13 +206,16 @@ https://templatemo.com/tm-608-daynight-admin
                         <div class="user-avatar">A</div>
                         <span class="user-name">Admin</span>
                     </button>
-                    <a href="login.html" class="btn-logout" title="Logout">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16 17 21 12 16 7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
-                        </svg>
-                    </a>
+                   <form action="{{ route('logout') }}"  class="btn-logout" style="display:inline;">
+    @csrf
+    <button type="submit" class="btn-logout" title="Logout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+    </button>
+</form>
                     <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="3" y1="12" x2="21" y2="12"/>
@@ -247,6 +272,45 @@ https://templatemo.com/tm-608-daynight-admin
                     </div>
                 </div>
             </div>
+            <div style="margin-top:40px;">
+    <h2 style="margin-bottom:15px;">5 Antrian Terbaru</h2>
+
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Film</th>
+            <th>Studio</th>
+            <th>Nomor Antrian</th>
+            <th>Status</th>
+        </tr>
+
+        @forelse($latestAntrians as $a)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $a->nama }}</td>
+            <td>{{ $a->jadwalFilm->film->judul ?? '-' }}</td>
+            <td>{{ $a->jadwalFilm->studio ?? '-' }}</td>
+            <td>{{ $a->nomor_antrian }}</td>
+
+            <td>
+                @if($a->status == 'menunggu')
+                    <span style="color:orange;">Menunggu</span>
+                @elseif($a->status == 'dipanggil')
+                    <span style="color:blue;">Dipanggil</span>
+                @else
+                    <span style="color:green;">Selesai</span>
+                @endif
+            </td>
+        </tr>
+        @empty
+        <tr>
+            <td colspan="6" style="text-align:center;">Belum ada data</td>
+        </tr>
+        @endforelse
+
+    </table>
+</div>
 
            
 

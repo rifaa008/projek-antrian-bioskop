@@ -5,26 +5,19 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\JadwalFilmController;
 use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| AUTH
-|--------------------------------------------------------------------------
-*/
+// AUTH
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-/*
-|--------------------------------------------------------------------------
-| ADMIN 
-|--------------------------------------------------------------------------
-*/
+
+// ADMIN 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
 
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('/admin', [AdminController::class, 'dashboard']);
 
     Route::resource('films', FilmController::class);
     Route::resource('jadwal_films', JadwalFilmController::class);
@@ -32,17 +25,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 });
 
-use App\Http\Controllers\UserPageController;
 
+// USER
+Route::get('/user', [UserPageController::class, 'home']);
 Route::get('/user/films', [UserPageController::class, 'films']);
 Route::get('/user/jadwal', [UserPageController::class, 'jadwal']);
 Route::get('/user/antrian', [UserPageController::class, 'antrian']);
 
-Route::post('/ambil-antrian', [UserPageController::class, 'ambilAntrian']);
-Route::get('/user', [UserPageController::class, 'home']);
 Route::get('/user/ambil', [UserPageController::class, 'formAntrian']);
 Route::post('/ambil-antrian', [UserPageController::class, 'ambilAntrian']);
-
-use App\Http\Controllers\AdminController;
-
-Route::get('/admin', [AdminController::class, 'dashboard']);
